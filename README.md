@@ -1,6 +1,6 @@
 ![Banner](banner.png)
 
-# Privacy-Chatting
+# Private-Chatting-Signal
 ```
 https://signal.org/#signal
 ```
