@@ -7,3 +7,6 @@ I keep this link here because Signal is where I do private chatting. This page i
 ```
 https://signal.org/#signal
 ```
+
+This repo is only that pointer. There is no code, no chat content, and
+no account information here.
