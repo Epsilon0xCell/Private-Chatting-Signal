@@ -3,143 +3,84 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Private Chatting Signal: what it is, how it runs, where it stops</title>
-<meta name="description" content="Private Chatting Signal is one of my projects. The README in the repo is short, so this page sticks to what the files themselves show.">
+<title>Private-Chatting-Signal: a tide table for one link</title>
+<meta name="description" content="A single pointer to Signal, kept in the open so it can be found and shared without searching.">
 <style>
+@font-face { font-family: "Amethysta"; src: url("fonts/Amethysta-Regular.ttf") format("truetype"); font-display: swap; }
+@font-face { font-family: "Bitter"; src: url("fonts/Bitter-400.ttf") format("truetype"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Bitter"; src: url("fonts/Bitter-700.ttf") format("truetype"); font-weight: 700; font-display: swap; }
 :root {
-  --bg: #080c0a; --panel: #0d1410; --ink: #d9e8dd;
-  --mut: #111b15;
-  --acc: #57e389; --acc2: #e8b339;
-  --line: #0d1410;
+  --ground: #1a0f20;
+  --panel: #2c1d3d;
+  --panel-edge: #6b4a8a;
+  --ink: #c9cfdb;
+  --ink-dim: #aab3bd;
+  --silver: #d8dce6;
+  --bright: #f2f4f8;
+  --violet: #8a68ab;
 }
 * { box-sizing: border-box; }
-body { margin: 0; background: var(--bg); color: var(--ink);
-  font-family: Charter, Georgia, serif; line-height: 1.55; }
-code, pre, .mono { font-family: 'DejaVu Sans Mono', monospace; }
-a { color: var(--acc2); }
-.hero { padding: 3rem 6vw 1rem; }
-.hero img.banner { width: 100%; height: auto; border: 1px solid var(--line);
-  border-radius: 10px; }
-.logo { width: 92px; height: 92px; border-radius: 18px;
-  border: 1px solid var(--line); }
-h1 { font-size: 2.4rem; margin: 0.4em 0 0.1em; }
-h2 { border-bottom: 2px solid var(--acc); padding-bottom: 0.2em;
-  margin-top: 2em; }
-.lede { font-size: 1.15rem; max-width: 62ch; }
-main { padding: 0 6vw 3rem; max-width: 1180px; margin: 0 auto; }
-.grid { display: grid; gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
-.card { background: var(--panel); border: 1px solid var(--line);
-  border-radius: 12px; padding: 1rem 1.2rem; }
-.card.pop { animation: rise 0.7s ease both; }
-@keyframes rise { from { opacity: 0; transform: translateY(14px); }
-  to { opacity: 1; transform: none; } }
-pre.code { background: #101014; color: #e8e6df; padding: 1rem 1.2rem;
-  border-radius: 12px; overflow-x: auto; font-size: 0.86rem;
-  border-left: 5px solid var(--acc); }
-table { border-collapse: collapse; width: 100%; }
-td, th { border-bottom: 1px solid var(--line); padding: 0.45rem 0.6rem;
-  text-align: left; }
-.shots { display: grid; gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
-.shots img { width: 100%; height: auto; border: 1px solid var(--line);
-  border-radius: 10px; background: #f4f1e8; }
-footer { padding: 2rem 6vw; border-top: 1px solid var(--line);
-  color: var(--mut); }
-.rail { display: flex; gap: 1.2rem; align-items: flex-start; }
-.rail nav { position: sticky; top: 1rem; min-width: 180px; }
-@media (max-width: 760px) { .rail { flex-direction: column; }
-  .rail nav { position: static; } }
-@media (prefers-reduced-motion: reduce) {
-  .card.pop { animation: none; } * { scroll-behavior: auto; } }
+body { margin: 0; background: var(--ground); color: var(--ink); font-family: "Bitter", Georgia, serif; line-height: 1.6; }
+.hero { max-width: 1060px; margin: 0 auto; padding: 2.2rem 5vw 0; }
+.hero img.shore { width: 100%; height: 190px; object-fit: cover; object-position: 50% 62%; display: block; border-top: 2px solid var(--silver); }
+.hero .title-row { display: flex; align-items: center; gap: 1.1rem; margin-top: 1.4rem; }
+.hero img.mark { width: 76px; height: 76px; }
+h1 { font-family: "Amethysta", Georgia, serif; font-weight: 400; letter-spacing: 0.06em; color: var(--silver); font-size: 2.15rem; margin: 0; }
+.lede { max-width: 62ch; font-size: 1.06rem; margin: 1rem 0 0; }
+.lede code { font-family: "Bitter", Georgia, serif; color: var(--bright); }
+main { max-width: 1060px; margin: 0 auto; padding: 0 5vw 2rem; }
+.waterline { border: 0; height: 2px; background: var(--silver); margin: 2.2rem 0; clip-path: polygon(0 0, 100% 0, 100% 100%, 92% 30%, 84% 100%, 71% 30%, 63% 100%, 47% 30%, 39% 100%, 24% 30%, 15% 100%, 6% 30%, 0 100%); opacity: 0.75; }
+.notice-wrap { display: flex; align-items: stretch; gap: 0; }
+.post { width: 14px; background: #120a18; border: 1px solid var(--panel-edge); flex: none; }
+.notice { flex: 1; background: var(--panel); border-top: 2px solid var(--silver); padding: 1.8rem 2rem 1.6rem; }
+.notice .kicker { font-family: "Amethysta", Georgia, serif; letter-spacing: 0.14em; font-size: 0.8rem; color: var(--ink-dim); margin: 0 0 0.9rem; text-transform: uppercase; }
+.board { display: block; background: #160c1e; border: 1px solid var(--silver); padding: 1.15rem 1.4rem; text-align: center; position: relative; }
+.board:hover { border-color: var(--bright); box-shadow: 0 0 0 1px var(--bright); }
+.board:active { background: #0f0716; }
+.board:focus-within { outline: 2px solid var(--violet); outline-offset: 4px; }
+a.signal { color: var(--bright); font-size: clamp(1.3rem, 4.2vw, 2rem); letter-spacing: 0.02em; text-decoration: none; overflow-wrap: anywhere; }
+a.signal:hover { text-decoration: underline; }
+.treads { display: inline-block; vertical-align: middle; margin-right: 0.9rem; }
+.treads i { display: block; height: 3px; background: var(--silver); margin: 3px 0; }
+.treads i:nth-child(1) { width: 18px; }
+.treads i:nth-child(2) { width: 26px; transition: width 160ms ease; }
+.treads i:nth-child(3) { width: 18px; }
+.board:hover .treads i:nth-child(2), .board:focus-visible .treads i:nth-child(2) { width: 38px; }
+.notice .fine { color: var(--ink-dim); font-size: 0.95rem; margin: 1.1rem 0 0; }
+.colophon { max-width: 1060px; margin: 0 auto; padding: 0 5vw 2.6rem; color: var(--ink-dim); font-size: 0.92rem; }
+.colophon .rule { height: 3px; background: var(--silver); opacity: 0.5; margin-bottom: 1rem; }
+.colophon .rule2 { height: 7px; background: var(--silver); opacity: 0.28; margin-bottom: 1.4rem; }
+.colophon p { margin: 0.3rem 0; }
+@media (prefers-reduced-motion: reduce) { .treads i { transition: none; } }
 </style>
 </head>
-<body class="layout-cards">
-<!-- This page exists for Private-Chatting-Signal alone: the layout (index-cards),
-     the colors, and the type were picked for this project, not
-     shared with the other project pages. The code block below is
-     copied from the file it names, line for line. If it looks
-     plain, that is because the project is plain, and I would
-     rather the page match the project than dress it up. The one
-     thing I will not do here is oversell: what this project does
-     not do is stated on the page, not hidden from it. -->
+<body>
 <header class="hero">
-  <img class="logo" src="assets/logo.png" alt="Private Chatting Signal logo">
-  <img class="banner" src="assets/banner.png" alt="">
-  <h1>Private Chatting Signal</h1>
-  <p class="mono"><a href="https://github.com/Epsilon0xCell/Private-Chatting-Signal">github.com/Epsilon0xCell/Private-Chatting-Signal</a></p>
+  <img class="shore" src="assets/intro-banner.png" alt="Stone steps climbing out of a retreating tide under a large moon">
+  <div class="title-row">
+    <img class="mark" src="assets/logo.png" alt="Stone steps rising from dark water below a thin crescent">
+    <h1>Private-Chatting-Signal</h1>
+  </div>
+  <p class="lede">The owner keeps a single pointer here to <code>https://signal.org/#signal</code> because Signal is where private chatting happens, kept in the open so it can be found and shared without searching. That is the whole of this page, set out like a tide table for one link, because one link is all this repository holds.</p>
 </header>
-
 <main>
-  <section class="rail">
-    <nav aria-label="on this page">
-      <p class="mono"><a href="#run">Run it</a><br>
-      <a href="#files">The files</a><br>
-      <a href="#sheets">The sheets</a><br>
-      <a href="https://github.com/Epsilon0xCell/Private-Chatting-Signal">The repo</a></p>
-    </nav>
-    <div>
-      <p class="lede">Private Chatting Signal is one of my projects. The README in the repo is short, so this page sticks to what the files themselves show.</p>
-      <div class="grid">
-        <div class="card pop"><h3>What it is</h3>
-          <p>Private Chatting Signal: 2 files, 4 counted
-          lines across Markdown 4. One job, done in the
-          open, in files you can read.</p></div>
-        <div class="card pop"><h3>The biggest piece</h3>
-          <p><code>README.md</code> carries the most
-          lines. If the project grows, that file is where the growth
-          lands first, for better or worse.</p></div>
-        <div class="card pop"><h3>The honest gap</h3>
-          <p>No test files yet. That is the honest gap, and the roadmap in the visuals folder says what the first one should cover.</p></div>
-      </div>
-      <section id="run">
-        <h2>Run it</h2>
-        <p>The repo README has the exact commands for this one. The
-        shape is the shape for most of my projects: clone it, read the
-        top file first so you know what will happen, then run it on
-        something you do not mind breaking.</p>
-        <p class="mono">$ git clone https://github.com/Epsilon0xCell/Private-Chatting-Signal.git<br>$ cd Private-Chatting-Signal</p>
-      </section>
-      
-  <section aria-label="real code">
-    <h2>The code, as it sits in the repo</h2>
-    <p>From <code>README.md</code>, line 1 on. I did
-    not tidy it for the page. What you see is what the file has.</p>
-    <pre class="code"><code># Privacy-Chatting
-```
-https://signal.org/#signal
-```</code></pre>
-  </section>
-      <section id="files">
-        <h2>The files that matter</h2>
-        <table><tr><th>File</th><th>Lines</th></tr>
-        <tr><td><code>README.md</code></td><td>4</td></tr>
-        <tr><td><code>LICENSE</code></td><td>0</td></tr>
-        </table>
-        <p>Names doing the work: <span class="mono">no named functions in the snapshot</span>.</p>
-      </section>
-      <section id="sheets">
-        <h2>Drawn by hand</h2>
-        <p>I sketch my projects on notebook paper so I have to
-        understand them well enough to draw them. The full set,
-        with the counts and how they were counted, is the
-        <a href="https://github.com/Epsilon0xCell/Private-Chatting-Signal/tree/main/Private-Chatting-Signal-Visuals">Private-Chatting-Signal-Visuals</a>
-        folder in the repo. Nothing is drawn over the binder holes.
-        That is a rule, not a style.</p>
-        <div class="shots">
-          <img src="assets/architecture.png" alt="Hand drawn architecture sheet for Private Chatting Signal">
-          <img src="assets/flowchart.png" alt="Hand drawn flowchart sheet for Private Chatting Signal">
-          <img src="assets/product-map.png" alt="Hand drawn product map sheet for Private Chatting Signal">
-        </div>
-      </section>
-    </div>
-  </section>
+  <hr class="waterline">
+  <div class="notice-wrap">
+    <div class="post" aria-hidden="true"></div>
+    <section class="notice" aria-label="The one link">
+      <p class="kicker">Harbour notice: the address</p>
+      <span class="board"><span class="treads" aria-hidden="true"><i></i><i></i><i></i></span><a class="signal" href="https://signal.org/#signal">https://signal.org/#signal</a></span>
+      <p class="fine">There is no code in this repository, no chat content, and no account information. The link above is the only active link on this page, and following it is the entire work of the repository, done in a few seconds.</p>
+    </section>
+    <div class="post" aria-hidden="true"></div>
+  </div>
 </main>
-<footer>
-  <p>Private Chatting Signal is one of my projects. This page was written
-  from the repo itself on 2026-10-30: the counts are the
-  repo's counts, the code is the repo's code, and the gaps are the
-  repo's gaps.</p>
+<footer class="colophon">
+  <div class="rule"></div>
+  <div class="rule2"></div>
+  <p>Licence: MIT, in the file named LICENSE in the repository.</p>
+  <p>Artwork on this page: intro-banner.png, banner.png, and logo.png, drawn for this repository.</p>
+  <p>Fonts: Amethysta and Bitter, both under the SIL Open Font License 1.1, shipped beside this page with their license texts.</p>
 </footer>
 </body>
 </html>
