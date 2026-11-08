@@ -1,86 +1,69 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Private-Chatting-Signal: a tide table for one link</title>
-<meta name="description" content="A single pointer to Signal, kept in the open so it can be found and shared without searching.">
+<title>Private-Chatting-Signal: a signal lamp for one link</title>
 <style>
-@font-face { font-family: "Amethysta"; src: url("fonts/Amethysta-Regular.ttf") format("truetype"); font-display: swap; }
-@font-face { font-family: "Bitter"; src: url("fonts/Bitter-400.ttf") format("truetype"); font-weight: 400; font-display: swap; }
-@font-face { font-family: "Bitter"; src: url("fonts/Bitter-700.ttf") format("truetype"); font-weight: 700; font-display: swap; }
-:root {
-  --ground: #1a0f20;
-  --panel: #2c1d3d;
-  --panel-edge: #6b4a8a;
-  --ink: #c9cfdb;
-  --ink-dim: #aab3bd;
-  --silver: #d8dce6;
-  --bright: #f2f4f8;
-  --violet: #8a68ab;
-}
-* { box-sizing: border-box; }
-body { margin: 0; background: var(--ground); color: var(--ink); font-family: "Bitter", Georgia, serif; line-height: 1.6; }
-.hero { max-width: 1060px; margin: 0 auto; padding: 2.2rem 5vw 0; }
-.hero img.shore { width: 100%; height: 190px; object-fit: cover; object-position: 50% 62%; display: block; border-top: 2px solid var(--silver); }
-.hero .title-row { display: flex; align-items: center; gap: 1.1rem; margin-top: 1.4rem; }
-.hero img.mark { width: 76px; height: 76px; }
-h1 { font-family: "Amethysta", Georgia, serif; font-weight: 400; letter-spacing: 0.06em; color: var(--silver); font-size: 2.15rem; margin: 0; }
-.lede { max-width: 62ch; font-size: 1.06rem; margin: 1rem 0 0; }
-.lede code { font-family: "Bitter", Georgia, serif; color: var(--bright); }
-main { max-width: 1060px; margin: 0 auto; padding: 0 5vw 2rem; }
-.waterline { border: 0; height: 2px; background: var(--silver); margin: 2.2rem 0; clip-path: polygon(0 0, 100% 0, 100% 100%, 92% 30%, 84% 100%, 71% 30%, 63% 100%, 47% 30%, 39% 100%, 24% 30%, 15% 100%, 6% 30%, 0 100%); opacity: 0.75; }
-.notice-wrap { display: flex; align-items: stretch; gap: 0; }
-.post { width: 14px; background: #120a18; border: 1px solid var(--panel-edge); flex: none; }
-.notice { flex: 1; background: var(--panel); border-top: 2px solid var(--silver); padding: 1.8rem 2rem 1.6rem; }
-.notice .kicker { font-family: "Amethysta", Georgia, serif; letter-spacing: 0.14em; font-size: 0.8rem; color: var(--ink-dim); margin: 0 0 0.9rem; text-transform: uppercase; }
-.board { display: block; background: #160c1e; border: 1px solid var(--silver); padding: 1.15rem 1.4rem; text-align: center; position: relative; }
-.board:hover { border-color: var(--bright); box-shadow: 0 0 0 1px var(--bright); }
-.board:active { background: #0f0716; }
-.board:focus-within { outline: 2px solid var(--violet); outline-offset: 4px; }
-a.signal { color: var(--bright); font-size: clamp(1.3rem, 4.2vw, 2rem); letter-spacing: 0.02em; text-decoration: none; overflow-wrap: anywhere; }
-a.signal:hover { text-decoration: underline; }
-.treads { display: inline-block; vertical-align: middle; margin-right: 0.9rem; }
-.treads i { display: block; height: 3px; background: var(--silver); margin: 3px 0; }
-.treads i:nth-child(1) { width: 18px; }
-.treads i:nth-child(2) { width: 26px; transition: width 160ms ease; }
-.treads i:nth-child(3) { width: 18px; }
-.board:hover .treads i:nth-child(2), .board:focus-visible .treads i:nth-child(2) { width: 38px; }
-.notice .fine { color: var(--ink-dim); font-size: 0.95rem; margin: 1.1rem 0 0; }
-.colophon { max-width: 1060px; margin: 0 auto; padding: 0 5vw 2.6rem; color: var(--ink-dim); font-size: 0.92rem; }
-.colophon .rule { height: 3px; background: var(--silver); opacity: 0.5; margin-bottom: 1rem; }
-.colophon .rule2 { height: 7px; background: var(--silver); opacity: 0.28; margin-bottom: 1.4rem; }
-.colophon p { margin: 0.3rem 0; }
-@media (prefers-reduced-motion: reduce) { .treads i { transition: none; } }
+@font-face{font-family:"Forum";src:url("fonts/Forum-Regular.ttf") format("truetype");font-weight:400;font-display:swap}
+@font-face{font-family:"Mulish";src:url("fonts/Mulish-Regular.ttf") format("truetype");font-weight:400;font-display:swap}
+@font-face{font-family:"Mulish";src:url("fonts/Mulish-Bold.ttf") format("truetype");font-weight:700;font-display:swap}
+:root{--black:#0a0906;--quay:#171310;--brass:#c9962e;--amber:#ffb52e;--bone:#e8ddc9;--dim:#9c8f78}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--black);color:var(--bone);font-family:"Mulish",Verdana,sans-serif;line-height:1.7}
+header{max-width:1000px;margin:0 auto;padding:2.8rem 1.2rem .4rem;text-align:center}
+header img.logo{width:150px;height:150px;border-radius:50%;border:2px solid var(--brass);box-shadow:0 0 34px rgba(255,181,46,.28)}
+h1{font-family:"Forum",serif;font-weight:400;letter-spacing:.06em;font-size:clamp(2rem,5vw,3.1rem);color:#fff;margin-top:1.1rem}
+header p{max-width:44rem;margin:.6rem auto 0;color:var(--dim)}
+figure{max-width:1000px;margin:1.5rem auto 0;padding:0 1.2rem}
+figure img{width:100%;border:1px solid #4a3a1c;border-radius:4px}
+main{max-width:1000px;margin:0 auto;padding:1rem 1.2rem 3rem}
+section{margin-top:1.5rem;background:var(--quay);border:1px solid #332a1c;border-radius:6px;padding:1.3rem 1.4rem}
+h2{font-family:"Forum",serif;font-weight:400;letter-spacing:.05em;font-size:1.55rem;color:var(--amber);margin-bottom:.5rem}
+p{margin:.5rem 0}
+.signal{text-align:center;padding:2rem 1rem}
+.signal a{display:inline-block;font-family:"Forum",serif;font-size:1.5rem;letter-spacing:.08em;color:#0a0906;background:var(--amber);padding:.85rem 2.2rem;border-radius:4px;text-decoration:none;box-shadow:0 0 30px rgba(255,181,46,.35)}
+.signal a:hover{background:#ffc95e}
+blockquote{border-left:3px solid var(--brass);padding:.4rem 0 .4rem 1rem;color:var(--bone);margin:.6rem 0}
+footer{border-top:1px solid #332a1c;padding:1.2rem;text-align:center;color:var(--dim);font-size:.95rem}
+footer img{max-width:720px;width:100%;border:1px solid #4a3a1c;border-radius:4px}
 </style>
 </head>
 <body>
-<header class="hero">
-  <img class="shore" src="assets/intro-banner.png" alt="Stone steps climbing out of a retreating tide under a large moon">
-  <div class="title-row">
-    <img class="mark" src="assets/logo.png" alt="Stone steps rising from dark water below a thin crescent">
-    <h1>Private-Chatting-Signal</h1>
-  </div>
-  <p class="lede">The owner keeps a single pointer here to <code>https://signal.org/#signal</code> because Signal is where private chatting happens, kept in the open so it can be found and shared without searching. That is the whole of this page, set out like a tide table for one link, because one link is all this repository holds.</p>
+<header>
+<img class="logo" src="assets/logo.png" alt="Private-Chatting-Signal logo: a brass signal lamp against dark harbour water, its shutters narrowed to one vertical slit of bright amber light">
+<h1>Private-Chatting-Signal: a signal lamp for one link</h1>
+<p>One lamp, one beam, one answer across the water. This repository holds
+exactly one thing: the way to reach a private conversation on Signal.</p>
 </header>
+<figure><img src="assets/intro-banner.png" alt="A dark harbour after the exchange, the signal lamp shutters closed on the quay, only a warm glow leaking at its seams, the water dark and quiet"></figure>
 <main>
-  <hr class="waterline">
-  <div class="notice-wrap">
-    <div class="post" aria-hidden="true"></div>
-    <section class="notice" aria-label="The one link">
-      <p class="kicker">Harbour notice: the address</p>
-      <span class="board"><span class="treads" aria-hidden="true"><i></i><i></i><i></i></span><a class="signal" href="https://signal.org/#signal">https://signal.org/#signal</a></span>
-      <p class="fine">There is no code in this repository, no chat content, and no account information. The link above is the only active link on this page, and following it is the entire work of the repository, done in a few seconds.</p>
-    </section>
-    <div class="post" aria-hidden="true"></div>
-  </div>
+<section>
+<h2>The signal</h2>
+<p>The lamp is lit. Follow the beam to the one link this repository
+keeps:</p>
+<div class="signal"><a href="https://signal.org/#signal">Open Signal</a></div>
+<p style="text-align:center;color:var(--dim)">That is the entire cargo. No
+directory, no list, no second harbour.</p>
+</section>
+<section>
+<h2>Harbour notice</h2>
+<blockquote>
+<p>Private conversation stays private. This page names no person, no
+number, and no handle; it only points at the Signal service itself, where
+the conversation, once opened, belongs to the people in it.</p>
+</blockquote>
+<p>Everything else about the exchange happens on Signal, off this quay,
+with the shutters closed behind it.</p>
+</section>
 </main>
-<footer class="colophon">
-  <div class="rule"></div>
-  <div class="rule2"></div>
-  <p>Licence: MIT, in the file named LICENSE in the repository.</p>
-  <p>Artwork on this page: intro-banner.png, banner.png, and logo.png, drawn for this repository.</p>
-  <p>Fonts: Amethysta and Bitter, both under the SIL Open Font License 1.1, shipped beside this page with their license texts.</p>
+<footer>
+<img src="assets/banner.png" alt="A dark harbour at night, a brass signal lamp on the near quay flashing a white amber beam across black water toward one small distant boat answering with a single light">
+<p>Private-Chatting-Signal. Artwork: signal lamp photography in lamp
+amber, harbour black, and brass, with one white flash. Fonts: Forum for
+headings and Mulish for text, self hosted under the SIL Open Font License.
+Artwork files: logo.png, banner.png, intro-banner.png. Licence: MIT (see
+LICENSE in the repository).</p>
 </footer>
 </body>
 </html>

@@ -1,8 +1,10 @@
-![The shore at low tide: stone steps climbing out of a retreating tide toward a large moon, a lantern burning on a harbour post, and a dry footprint on the fourth step](intro-banner.png)
+![Intro: a dark harbour after the exchange, the signal lamp shutters closed on the quay, only a warm glow leaking at its seams, the water dark and quiet](intro-banner.png)
 
 # Private-Chatting-Signal
 
-![Private-Chatting-Signal painted in silver letters on the hull of a beached boat, with stone steps, the moon gates, two cloaked figures, and a raven on the crossbar](banner.png)
+<p align="center"><img src="logo.png" alt="Private-Chatting-Signal logo: a brass signal lamp against dark harbour water, its shutters narrowed to one vertical slit of bright amber light" width="200"></p>
+
+![Banner: a dark harbour at night, a brass signal lamp on the near quay flashing a white amber beam across black water toward one small distant boat answering with a single light](banner.png)
 
 ![The shore in three bands: seawater draining down the stone steps tread by tread while a lantern flame trembles and a raven turns its head](scene.svg)
 
